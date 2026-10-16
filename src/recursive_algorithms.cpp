@@ -29,6 +29,14 @@ namespace {
         reverseArrayHelper(array, left + 1, right - 1); // Recur for the remaining elements
     }
 }
+namespace {
+    int arraySumHelper(const std::vector<int>& array, int index) {
+        if (index >= array.size()) {
+            return 0; // Base case: no more elements to sum
+        }
+        return array[index] + arraySumHelper(array, index + 1); // Recursive case
+    }
+}
 // TODO: Implement factorial recursively.
 // Base case: n == 0 or n == 1.
 // Recursive case: n * factorial(n - 1).
@@ -122,10 +130,7 @@ int binarySearchIterative(const std::vector<int>& array, int target) {
 // Base case: empty array.
 // Recursive case: first element + arraySum(rest-of-array).
 int arraySum(const std::vector<int>& array) {
-    if (array.empty()) {
-        return 0;
-    }
-    return array[0] + arraySum(std::vector<int>(array.begin() + 1, array.end()));
+    return arraySumHelper(array, 0);
 }
 
 // TODO: Implement iterative array sum comparison.
